@@ -1,0 +1,24 @@
+package dsa.striver.binary_tree.faq;
+
+public class LowestCommonAncestorBinaryTree {
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //your code goes here
+
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode leftLCA = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightLCA = lowestCommonAncestor(root.right, p, q);
+
+        if (leftLCA == null) {
+            return rightLCA;
+        }
+        else if (rightLCA == null) {
+            return leftLCA;
+        }
+        else {
+            return root;
+        }
+    }
+}
