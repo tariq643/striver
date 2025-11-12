@@ -1,7 +1,5 @@
 package dsa.striver.binarysearch.onanswers;
 
-import dsa.kumarK.binarySearch.session1.FindNthRootOfM;
-
 public class FindNthrootOfM {
 
     private int powFunc (int a, int n) {
@@ -40,8 +38,6 @@ public class FindNthrootOfM {
     }
 
     public static void main(String[] args) {
-        FindNthRootOfM findNthRootOfM = new FindNthRootOfM();
-        int ans = findNthRootOfM.NthRoot(4, 18);
-        System.out.println(ans);
+
     }
 }

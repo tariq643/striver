@@ -5,7 +5,7 @@ public class KokoEatingBananas {
     public int minimumRateToEatBananas(int[] piles, int h) {
 
         int start = 1;
-        int end = Integer.MIN_VALUE; // for fiding largest values in piles
+        int end = Integer.MIN_VALUE; // for finding the largest values in piles
         int ans = -1;
 
         for (int i = 0; i < piles.length; i++) {
