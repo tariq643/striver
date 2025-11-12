@@ -16,6 +16,7 @@ public class KokoEatingBananas {
 
         // apply binary search on the possible values of k -> (1, max(piles))
         while (start <= end) {
+
             int mid = start + (end - start) / 2;
             if (isEatingSppedValid(piles, mid, h)) {
                 end = mid - 1;
