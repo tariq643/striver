@@ -19,8 +19,6 @@ public class NextPermutation {
             return;
         }
 
-
-
     }
 
     private void reverse(int a, int b, int[] nums) {
