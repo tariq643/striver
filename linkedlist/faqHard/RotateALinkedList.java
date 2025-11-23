@@ -13,7 +13,7 @@ public class RotateALinkedList {
 
         while (current.next != null) {
             current = current.next;
-            ++lengthOfLinkedList;
+            lengthOfLinkedList = lengthOfLinkedList + 1;
         }
 
 
