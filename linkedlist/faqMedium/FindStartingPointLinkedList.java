@@ -26,7 +26,6 @@ public class FindStartingPointLinkedList {
                 return slow;
             }
         }
-
         return null;
     }
 }

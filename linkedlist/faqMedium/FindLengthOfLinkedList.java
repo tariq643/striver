@@ -8,7 +8,7 @@ public class FindLengthOfLinkedList {
         fast = fast.next;
         while (slow != fast) {
 
-            length++;
+            length = length + 1;
             fast = fast.next;
         }
         return length;
