@@ -31,4 +31,26 @@ public class HouseRobber {
         int nonPick = 0 + recur(nums, index - 1, dp);
         return dp[index] = Math.max(pick, nonPick);
     }
+    public int houseRobber(int[] money) {
+
+        int length = money.length;
+        int dp[] = new int[length];
+        if (length == 1) {
+            return money[0];
+        }
+        if (length == 2) {
+            return Math.max(money[0], money[1]);
+        }
+        if (length == 3) {
+            return Math.max(money[0] + money[2], money[1]);
+        }
+        dp[0] = money[0];
+        dp[1] = money[1];
+        dp[2] = Math.max(dp[0] + money[2], dp[1]);
+        dp[3] = Math.max(dp[1] + money[3], dp[2]);
+        for (int i = 4; i < length; i++) {
+            dp[i] = Math.max(dp[i - 2] + money[i], dp[i - 1]);
+        }
+        return dp[length - 1];
+    }
 }
