@@ -13,6 +13,7 @@ public class CheckIfThereExistsASubSequenceWithSumK {
         if (i == n) {
             return sum == 0;
         }
+        // pick / no pick logic
         return solve(i+1 , n , nums, sum - nums[i]) || solve(i+1 , n , nums, sum);
     }
 
