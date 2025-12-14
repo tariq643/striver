@@ -4,53 +4,55 @@ import java.util.Arrays;
 
 public class HouseRobber {
 
-    public int rob(int[] money) {
+    private int func(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
 
-        int n = money.length;
-        int dp[] = new int[n + 1];
-        Arrays.fill(dp, -1);
-        return recur(money, n, dp);
+        // Base case
+        dp[0] = nums[0];
+
+        // Iterate through the elements of the array
+        for (int i = 1; i < n; i++) {
+
+            /* Calculate maximum value by either picking
+            the current element or not picking it */
+            int pick = nums[i];
+            if (i > 1)
+                pick += dp[i - 2];
+            int nonPick = dp[i - 1];
+
+            // Store the maximum value in dp array
+            dp[i] = Math.max(pick, nonPick);
+        }
+
+        /* The last element of the dp array
+        will contain the maximum sum */
+        return dp[n - 1];
     }
 
-    private int recur(int[] nums, int index, int[] dp) {
-
-        if (index == 1) {
-            dp[index] = nums[0];
-            return dp[index];
-        }
-        if (index == 0) {
-            dp[index] = 0;
-            return 0;
-        }
-
-        if (dp[index] != -1) {
-            return dp[index];
-        }
-
-        int pick = nums[index-1] + recur(nums, index - 2, dp);
-        int nonPick = 0 + recur(nums, index - 1, dp);
-        return dp[index] = Math.max(pick, nonPick);
-    }
+    // Function to find the maximum money robber can rob
     public int houseRobber(int[] money) {
-
-        int length = money.length;
-        int dp[] = new int[length];
-        if (length == 1) {
+        int n = money.length;
+        if (n == 0)
+            return 0;
+        if (n == 1)
             return money[0];
+
+        int[] arr1 = new int[n - 1];
+        int[] arr2 = new int[n - 1];
+
+        // Populate arr1 and arr2
+        for (int i = 0; i < n; i++) {
+            if (i != n - 1)
+                arr1[i] = money[i];
+            if (i != 0)
+                arr2[i - 1] = money[i];
         }
-        if (length == 2) {
-            return Math.max(money[0], money[1]);
-        }
-        if (length == 3) {
-            return Math.max(money[0] + money[2], money[1]);
-        }
-        dp[0] = money[0];
-        dp[1] = money[1];
-        dp[2] = Math.max(dp[0] + money[2], dp[1]);
-        dp[3] = Math.max(dp[1] + money[3], dp[2]);
-        for (int i = 4; i < length; i++) {
-            dp[i] = Math.max(dp[i - 2] + money[i], dp[i - 1]);
-        }
-        return dp[length - 1];
+        int ans1 = func(arr1);
+
+        int ans2 = func(arr2);
+
+        // Return the maximum of ans1 and ans2
+        return Math.max(ans1, ans2);
     }
 }
