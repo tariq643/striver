@@ -6,16 +6,13 @@ public class TransposeMatrix {
 
         int length = matrix.length;
         int width = matrix[0].length;
+        int[][] result = new int[width][length];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                if (i < j) {
-                    int temp = matrix[i][j];
-                    matrix[i][j] = matrix[j][i];
-                    matrix[j][i] = temp;
-                }
+                result[j][i] = matrix[i][j];
             }
         }
-        return matrix;
+        return result;
     }
 
     static void main() {
@@ -25,7 +22,7 @@ public class TransposeMatrix {
         TransposeMatrix sol = new TransposeMatrix();
 
         // Rotate the matrix
-        sol.transpose(arr);
+        arr = sol.transpose(arr);
 
         // Output the rotated matrix
         System.out.println("Rotated Image:");
