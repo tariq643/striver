@@ -9,16 +9,16 @@ public class SegregateOddNumberEvenNumberLinkedList {
         ListNode oddNumbers = new ListNode();
         dummy.next = head;
         ListNode current = head;
-        while (current != null) {
-
-            if (current.data % 2 == 0) {
-                evenNumbers.data = current.data;
-            }
-            else {
-                oddNumbers.data = current.data;
-            }
-            current = current.next;
-        }
+//        while (current != null) {
+//
+//            if (current.data % 2 == 0) {
+//                evenNumbers.data = current.data;
+//            }
+//            else {
+//                oddNumbers.data = current.data;
+//            }
+//            current = current.next;
+//        }
         evenNumbers.next = oddNumbers;
         dummy.next = evenNumbers;
         return dummy.next;
