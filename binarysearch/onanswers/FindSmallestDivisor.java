@@ -17,7 +17,9 @@ public class FindSmallestDivisor {
 
         int max = Integer.MIN_VALUE;
         int n = nums.length;
-        if (n > limit) return -1;
+        if (n > limit) {
+            return -1;
+        }
         for (int i = 0; i < n; i++) {
             max = Math.max(max, nums[i]);
         }
