@@ -8,13 +8,13 @@ public class DetectACycleInLinkedList {
             return false;
         }
 
-        ListNode mid = head, fast = head.next;
+        ListNode slow = head, fast = head.next;
 
         while (fast != null && fast.next != null) {
-            if (mid == fast) {
+            if (slow == fast) {
                 return true;
             }
-            mid = mid.next;
+            slow = slow.next;
             fast = fast.next.next;
         }
         return false;

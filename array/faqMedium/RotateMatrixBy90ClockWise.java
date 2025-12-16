@@ -1,4 +1,4 @@
-package dsa.striver.array;
+package dsa.striver.array.faqMedium;
 
 public class RotateMatrixBy90ClockWise {
 
