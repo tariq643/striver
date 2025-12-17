@@ -2,35 +2,38 @@ package dsa.striver.linkedlist.faqDll;
 
 public class DeleteAllOccurencesOfAKeyInDLL {
 
-    private void deleteNode (ListNode node) {
-
-        ListNode next = node.next;
-        ListNode prev = node.prev;
-
-        if (prev != null) {
-            prev.next = next;
-        }
-        if (next != null) {
-            next.prev = prev;
-        }
-    }
 
     public ListNode deleteAllOccurrences(ListNode head, int target) {
 
-        if (head == null) {
-            return head;
-        }
+        ListNode temp = head;
 
-        ListNode dummyNode = new ListNode(Integer.MIN_VALUE);
-        dummyNode.next = head;
+        while (temp != null) {
+            if (temp.val == target) {
+                // Update head if needed
+                if (temp == head) {
+                    head = temp.next;
+                }
 
-        ListNode current = head;
-        while (current != null && current.next != null) {
-            if (current.val == target) {
-                deleteNode(current);
+                ListNode nextNode = temp.next;
+                ListNode prevNode = temp.prev;
+
+                // Update next node's previous
+                if (nextNode != null) {
+                    nextNode.prev = prevNode;
+                }
+
+                // Update previous node's next
+                if (prevNode != null) {
+                    prevNode.next = nextNode;
+                }
+
+                // Delete the current node
+                temp = nextNode;
+            } else {
+                temp = temp.next;
             }
-            current = current.next;
         }
-        return dummyNode.next;
+
+        return head;
     }
 }
