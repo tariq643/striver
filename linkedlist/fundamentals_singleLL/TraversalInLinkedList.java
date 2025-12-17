@@ -11,29 +11,17 @@ public class TraversalInLinkedList {
         List<Integer> traversal = new ArrayList<>();
 
         while (current != null) {
-            traversal.add(current.val);
+            traversal.add(current.data);
             current = current.next;
         }
         return traversal;
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-        val = 0;
-        next = null;
-    }
-
-    ListNode(int data1) {
-        val = data1;
-        next = null;
-    }
-
-    ListNode(int data1, ListNode next1) {
-        val = data1;
-        next = next1;
-    }
+class ListNode{
+    public int data;
+    public ListNode next;
+    ListNode() { data = 0; next = null; }
+    ListNode(int x) { data = x; next = null; }
+    ListNode(int x, ListNode next) { data = x; this.next = next; }
 }

@@ -4,9 +4,9 @@ public class DeletionOfKthElementOfLinkedList {
 
     public ListNode deleteKthNode(ListNode head, int k) {
 
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-
+        if (head == null) {
+            return null;
+        }
         ListNode current = head;
         while (k-- >= 1 && current != null) {
             current = current.next;
