@@ -7,6 +7,7 @@ import java.util.Queue;
 
 public class AlienDictionary {
 
+    // kahn's algorithm
     private List<Integer> topoSort (int k, List<Integer>[] adj) {
 
         // To store the In-degrees of nodes
