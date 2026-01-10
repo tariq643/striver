@@ -5,49 +5,94 @@ import java.util.Stack;
 
 public class KosarajuAlgorithm {
 
-    /* Function to perform DFS for storing the
-    nodes in stack based on their finishing time */
-    private void dfs (int node, int[] visited, ArrayList<ArrayList<Integer>> adj,
-                      Stack<Integer> stack) {
+    private void dfs(int node, int[] vis,
+                     ArrayList<ArrayList<Integer>> adj,
+                     Stack<Integer> st) {
 
-        visited[node] = 1;
+        // Mark the node as visited
+        vis[node] = 1;
 
+        // Traverse all its neighbors
         for (int it : adj.get(node)) {
-            if (visited[it] == 0) {
-                dfs(it, visited, adj, stack);
+            if (vis[it] == 0) {
+                // Recursively perform DFS if not visited already
+                dfs(it, vis, adj, st);
             }
         }
-        stack.push(node);
+
+        // Push the node in stack
+        st.push(node);
     }
 
     /* Helper function to perform DFS for finding
     number of Strongly connected components */
-    private void helperDFS (int node, int[] visited,
-                            ArrayList<ArrayList<Integer>> adjTranspose) {
+    private void helperDFS(int node, int[] vis,
+                           ArrayList<ArrayList<Integer>> adjT) {
+        // Mark the node as visited
+        vis[node] = 1;
 
-        visited[node] = 1;
-
-        for (int it : adjTranspose.get(node)) {
-            if (visited[it] == 0) {
-                helperDFS(node, visited, adjTranspose);
+        // Traverse all its neighbors
+        for (int it : adjT.get(node)) {
+            if (vis[it] == 0) {
+                // Recursively perform DFS if not already visited
+                helperDFS(it, vis, adjT);
             }
         }
     }
 
+    /* Funtion call to find the number of
+    strongly connected components */
     public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Visited array
+        int[] vis = new int[V];
 
-        // call the dfs to do a topological sorting on the graph
-        int[] visited = new int[V];
-        Stack<Integer> stack = new Stack<>();
+        // Stack data structure
+        Stack<Integer> st = new Stack<>();
+
+        /* Perform initial DFS to store the nodes
+        in stack based on their finishing time */
         for (int i = 0; i < V; i++) {
-            if (visited[i] == 0) {
-                dfs(i, visited, adj, stack);
+            if (vis[i] == 0) {
+                dfs(i, vis, adj, st);
             }
         }
-        // to store the reversed graph
-        ArrayList<ArrayList<Integer>> adjTransverse = new ArrayList<>();
+
+        // To store the reversed graph
+        ArrayList<ArrayList<Integer>> adjT = new ArrayList<>();
         for (int i = 0; i < V; i++) {
-            adjTransverse.add(new ArrayList<>());
+            adjT.add(new ArrayList<>());
         }
+
+        /* Reverse all the edges of original
+        graph to the reversed graph */
+        for (int i = 0; i < V; i++) {
+            // Mark the node as unvisited
+            vis[i] = 0;
+
+            // Add the reversed edge
+            for (int it : adj.get(i)) {
+                adjT.get(it).add(i);
+            }
+        }
+
+        /* To store the count of strongly
+        connected components */
+        int count = 0;
+
+        /* Start DFS call from every unvisited
+        node based on their finishing time */
+        while (!st.isEmpty()) {
+            // Get the node
+            int node = st.pop();
+
+            // If not visited already
+            if (vis[node] == 0) {
+                count += 1;
+                helperDFS(node, vis, adjT);
+            }
+        }
+
+        // Return the result
+        return count;
     }
 }
