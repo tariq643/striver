@@ -39,7 +39,7 @@ public class LongestCommonSubString {
         String s2 = "acjkp";
 
         // Create an instance of Solution class
-        Solution sol = new Solution();
+        LongestCommonSubString sol = new LongestCommonSubString();
 
         // Print the result
         System.out.println("The Length of Longest Common Substring is " + sol.longestCommonSubstr(s1, s2));
