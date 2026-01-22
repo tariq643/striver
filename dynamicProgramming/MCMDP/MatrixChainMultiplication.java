@@ -55,7 +55,7 @@ public class MatrixChainMultiplication {
         int[] arr = {10, 20, 30, 40, 50};
 
         // Create an instance of Solution class
-        Solution sol = new Solution();
+        MatrixChainMultiplication sol = new MatrixChainMultiplication();
 
         // Print the result
         System.out.println("The minimum number of operations is " + sol.matrixMultiplication(arr));
