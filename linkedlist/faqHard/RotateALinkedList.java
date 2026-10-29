@@ -7,7 +7,7 @@ public class RotateALinkedList {
         if (head == null || head.next == null || k == 0) {
             return head;
         }
-
+    
         int lengthOfLinkedList = 1;
         ListNode current = head;
 
